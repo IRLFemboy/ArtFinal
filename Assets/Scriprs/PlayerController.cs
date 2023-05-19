@@ -12,7 +12,6 @@ public class PlayerController : MonoBehaviour
     bool isMoving;
     bool isFalling;
     public bool isJumping;
-    bool isDead;
 
     [SerializeField] Rigidbody2D rb;
     [SerializeField] Transform groundCheck;
@@ -74,7 +73,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.velocity = new Vector2(rb.velocity.x * speed, rb.velocity.y);
+        rb.velocity = new Vector2(horizontal * speed, 0);
     }
 
     bool isGrounded()
@@ -97,16 +96,12 @@ public class PlayerController : MonoBehaviour
     {
         if(collision.CompareTag("Spike"))
         {
-            StartCoroutine(Die());
+            Die();
         }
     }
 
-    IEnumerator Die()
+    void Die()
     {
-        rb.isKinematic = true;
-        isDead = true;
-        anim.SetBool("isDead", isDead);
-        yield return new WaitForSeconds(3);
-        Application.Quit();
+
     }
 }
