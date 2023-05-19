@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0dcd8e3a5c956854e9ac19f1f94fe380
+guid: ca328a65274dde94b8f6602c879851ed
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -128,7 +128,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Weird dog gameboy thing jump (1)_0
+      name: Weird dog gameboy thing jump (2)_0
       rect:
         serializedVersion: 2
         x: 0
@@ -142,14 +142,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3549e0e68dc19a14b81a117a9d4fa2e7
-      internalID: -995233455
+      spriteID: 3af26243daaf27742bd8fee0eb697a49
+      internalID: -2042643410
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Weird dog gameboy thing jump (1)_1
+      name: Weird dog gameboy thing jump (2)_1
       rect:
         serializedVersion: 2
         x: 150
@@ -163,14 +163,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5d296360319dd06458be80f23e420168
-      internalID: 533145904
+      spriteID: 736544757e279fd4eafc8328626838f7
+      internalID: -328444468
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Weird dog gameboy thing jump (1)_2
+      name: Weird dog gameboy thing jump (2)_2
       rect:
         serializedVersion: 2
         x: 300
@@ -184,14 +184,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0ff0c2d5b3f49db4890bffc69412ee57
-      internalID: -1075081630
+      spriteID: ca4c3978bc2d1dd49be3b95ac60367d3
+      internalID: 256425958
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Weird dog gameboy thing jump (1)_3
+      name: Weird dog gameboy thing jump (2)_3
       rect:
         serializedVersion: 2
         x: 0
@@ -205,8 +205,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8d70063c8988eef458f9dda8e18f62e7
-      internalID: 220928703
+      spriteID: e79f42978dc2eff4aa9b771191e34b55
+      internalID: 1120331653
       vertices: []
       indices: 
       edges: []
@@ -222,10 +222,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Weird dog gameboy thing jump (1)_3: 220928703
-      Weird dog gameboy thing jump (1)_0: -995233455
-      Weird dog gameboy thing jump (1)_2: -1075081630
-      Weird dog gameboy thing jump (1)_1: 533145904
+      Weird dog gameboy thing jump (2)_2: 256425958
+      Weird dog gameboy thing jump (2)_3: 1120331653
+      Weird dog gameboy thing jump (2)_1: -328444468
+      Weird dog gameboy thing jump (2)_0: -2042643410
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
