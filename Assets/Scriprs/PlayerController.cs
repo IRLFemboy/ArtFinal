@@ -1,79 +1,84 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
     float horizontal;
-    float vertical;
     public float speed = 8f;
     public float jumpForce = 16f;
     bool isFacingRight = true;
     bool isMoving;
     bool isFalling;
     public bool isJumping;
+    bool isDead;
 
     [SerializeField] Rigidbody2D rb;
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask groundLayer;
     [SerializeField] Animator anim;
 
-    // Update is called once per frame
     void Update()
     {
-        horizontal = Input.GetAxisRaw("Horizontal");
-        vertical = Input.GetAxisRaw("Vertical");
+        if (!isDead)
+        {
+            horizontal = Input.GetAxisRaw("Horizontal");
 
-        if (Input.GetButtonDown("Jump") && isGrounded())
-        {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-        }
+            if (Input.GetButtonDown("Jump") && isGrounded())
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            }
 
-        if(Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
-        }
+            if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+            }
 
-        Flip();
+            Flip();
 
-        if (rb.velocity.x > 0 || rb.velocity.x < 0)
-        {
-            isMoving = true;
-            anim.SetBool("isMoving", isMoving);
-        }
-        else
-        {
-            isMoving = false;
-            anim.SetBool("isMoving", isMoving);
-        }
+            if (rb.velocity.x > 0 || rb.velocity.x < 0)
+            {
+                isMoving = true;
+                anim.SetBool("isMoving", isMoving);
+            }
+            else
+            {
+                isMoving = false;
+                anim.SetBool("isMoving", isMoving);
+            }
 
-        if (rb.velocity.y > 0)
-        {
-            isJumping = true;
-            anim.SetBool("isJumping", isJumping);
-        }
-        else
-        {
-            isJumping = false;
-            anim.SetBool("isJumping", isJumping);
-        }
+            if (rb.velocity.y > 0.1f)
+            {
+                isJumping = true;
+                anim.SetBool("isJumping", isJumping);
+            }
+            else
+            {
+                isJumping = false;
+                anim.SetBool("isJumping", isJumping);
+            }
 
-        if (rb.velocity.y < 0)
-        {
-            isFalling = true;
-            anim.SetBool("isFalling", isFalling);
-        }
-        else
-        {
-            isFalling = false;
-            anim.SetBool("isFalling", isFalling);
+            if (rb.velocity.y < -.1f)
+            {
+                isFalling = true;
+                anim.SetBool("isFalling", isFalling);
+            }
+            else
+            {
+                isFalling = false;
+                anim.SetBool("isFalling", isFalling);
+            }
         }
 
     }
 
     private void FixedUpdate()
     {
-        rb.velocity = new Vector2(horizontal * speed, 0);
+        if (!isDead)
+        {
+            rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        }
     }
 
     bool isGrounded()
@@ -83,12 +88,15 @@ public class PlayerController : MonoBehaviour
 
     void Flip()
     {
-        if(isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
+        if (!isDead)
         {
-            isFacingRight = !isFacingRight;
-            Vector3 localScale = transform.localScale;
-            localScale.x *= -1f;
-            transform.localScale = localScale;
+            if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
+            {
+                isFacingRight = !isFacingRight;
+                Vector3 localScale = transform.localScale;
+                localScale.x *= -1f;
+                transform.localScale = localScale;
+            }
         }
     }
 
@@ -96,12 +104,16 @@ public class PlayerController : MonoBehaviour
     {
         if(collision.CompareTag("Spike"))
         {
-            Die();
+            StartCoroutine(Die());
         }
     }
 
-    void Die()
+    IEnumerator Die()
     {
+        isDead = true;
+        anim.SetBool("isDead", isDead);
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene("UrBadLmao");
 
     }
 }
